@@ -1,0 +1,13 @@
+rm -f tensorCUBLAS simpleTensorCoreGEMM simpleCUFFT
+nvcc tensorCUBLAS.cu -o tensorCUBLAS -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart -lcublas -lcurand -lcufft
+ptxas info    : 0 bytes gmem
+Time for SGEMM without Tensor Cores: 5.093376 ms
+Time for SGEMM without Tensor Cores: 0.025568 ms
+Time for SGEMM without Tensor Cores: 0.018432 ms
+Verification passed!
+
+Time for SGEMM with Tensor Cores and mixed precision (Volta): 19.853312 ms
+Time for SGEMM with Tensor Cores and mixed precision (Volta): 0.038912 ms
+Time for SGEMM with Tensor Cores and mixed precision (Volta): 0.015360 ms
+Verification passed!
+

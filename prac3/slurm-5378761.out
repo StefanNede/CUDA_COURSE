@@ -1,0 +1,455 @@
+rm -f laplace3d laplace3d_new
+nvcc laplace3d.cu laplace3d_gold.cpp -o laplace3d \
+	-I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+laplace3d.cu(72): warning #177-D: variable "h_foo" was declared but never referenced
+    float *h_u1, *h_u2, *h_foo, *d_u1, *d_u2, *d_foo;
+                         ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z13GPU_laplace3diiiPKfPf' for 'sm_70'
+ptxas info    : Function properties for _Z13GPU_laplace3diiiPKfPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 56 registers, used 0 barriers, 384 bytes cmem[0]
+nvcc laplace3d_new.cu laplace3d_gold.cpp -o laplace3d_new \
+	-I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+laplace3d_new.cu(67): warning #177-D: variable "h_foo" was declared but never referenced
+    float *h_u1, *h_u2, *h_foo, *d_u1, *d_u2, *d_foo;
+                         ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z13GPU_laplace3diiiPKfPf' for 'sm_70'
+ptxas info    : Function properties for _Z13GPU_laplace3diiiPKfPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 21 registers, used 0 barriers, 384 bytes cmem[0]
+==PROF== Connected to process 267924 (/home/teaching69/prac3/laplace3d)
+==PROF== Profiling "GPU_laplace3d" - 0: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 1: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 2: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 3: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 4: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 5: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 6: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 7: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 8: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 9: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 10: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 11: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 12: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 13: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 14: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 15: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 16: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 17: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 18: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 19: 0%....50%....100% - 1 pass
+Grid dimensions: 1024 x 1024 x 1024 
+
+GPU Device 0: "Volta" with compute capability 7.0
+
+Copy u1 to device: 519.9 (ms) 
+
+Block dimensions: 16 x 16
+20x GPU_laplace3d: 11039.6 (ms) 
+
+Copy u2 to host: 1501.1 (ms) 
+
+==PROF== Disconnected from process 267924
+[267924] laplace3d@127.0.0.1
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (64, 64, 1)x(16, 16, 1), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 15,894,384,592
+    ------------------------------------------------------ ----------- --------------
+
+==PROF== Connected to process 268092 (/home/teaching69/prac3/laplace3d_new)
+==PROF== Profiling "GPU_laplace3d" - 0: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 1: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 2: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 3: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 4: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 5: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 6: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 7: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 8: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 9: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 10: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 11: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 12: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 13: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 14: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 15: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 16: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 17: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 18: 0%....50%....100% - 1 pass
+==PROF== Profiling "GPU_laplace3d" - 19: 0%....50%....100% - 1 pass
+Grid dimensions: 1024 x 1024 x 1024 
+
+GPU Device 0: "Volta" with compute capability 7.0
+
+Copy u1 to device: 506.2 (ms) 
+
+Block dimensions: 8 x 8 x 8
+20x GPU_laplace3d_new: 24666.8 (ms) 
+
+Copy u2 to host: 1922.6 (ms) 
+
+==PROF== Disconnected from process 268092
+[268092] laplace3d_new@127.0.0.1
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+
+  GPU_laplace3d(int, int, int, const float *, float *) (128, 128, 128)x(8, 8, 8), Context 1, Stream 7, Device 0, CC 7.0
+    Section: Command line profiler metrics
+    ------------------------------------------------------ ----------- --------------
+    Metric Name                                            Metric Unit   Metric Value
+    ------------------------------------------------------ ----------- --------------
+    smsp__sass_thread_inst_executed_op_fp32_pred_on.sum           inst  6,404,775,888
+    smsp__sass_thread_inst_executed_op_integer_pred_on.sum        inst 53,567,786,856
+    ------------------------------------------------------ ----------- --------------
+

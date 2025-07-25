@@ -1,0 +1,7 @@
+Matrix Size,Time for SGEMM without Tensor Cores,Time for SGEMM with Tensor Cores and mixed precision (Volta)
+32,0.017440,0.014336
+64,0.018432,0.015360
+128,0.020480,0.016384
+256,0.027648,0.019456
+512,0.048128,0.028672
+1024,0.328704,0.075776

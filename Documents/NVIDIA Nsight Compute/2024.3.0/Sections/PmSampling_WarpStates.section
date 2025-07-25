@@ -1,0 +1,304 @@
+Identifier: "PmSampling_WarpStates"
+DisplayName: "PM Sampling: Warp States"
+Extends: "PmSampling"
+Description: "Warp states sampled periodically over the workload duration. Metrics in different groups come from different passes."
+Order: 16
+Sets {
+  Identifier: "pmsampling"
+}
+
+Filter{
+  VGpu: Platform_NotSupported
+}
+
+Group {
+  Name: "sampling_ws0"
+}
+Group {
+  Name: "sampling_ws1"
+}
+Group {
+  Name: "sampling_ws2"
+}
+Group {
+  Name: "sampling_ws3"
+}
+Group {
+  Name: "sampling_ws4"
+}
+
+Body {
+  DisplayName: "Warp States"
+
+  Items {
+    Filter {
+      MinArch: CC_86
+      MaxArch: CC_90
+    }
+    Timeline {
+      MetricGroups {
+        Label: "Warp States (Aggregated)"
+        Expanded: true
+
+        MetricRows {
+          Metrics {
+            Label: "Barrier"
+            Name: "pmsampling:smsp__warps_issue_stalled_barrier.avg"
+            Groups: "sampling_ws0"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Branch Resolving"
+            Name: "pmsampling:smsp__warps_issue_stalled_branch_resolving.avg"
+            Groups: "sampling_ws0"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Dispatch Stall"
+            Name: "pmsampling:smsp__warps_issue_stalled_dispatch_stall.avg"
+            Groups: "sampling_ws0"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Drain"
+            Name: "pmsampling:smsp__warps_issue_stalled_drain.avg"
+            Groups: "sampling_ws0"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "IMC Miss"
+            Name: "pmsampling:smsp__warps_issue_stalled_imc_miss.avg"
+            Groups: "sampling_ws1"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "LG Throttle"
+            Name: "pmsampling:smsp__warps_issue_stalled_lg_throttle.avg"
+            Groups: "sampling_ws1"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Long Scoreboard"
+            Name: "pmsampling:smsp__warps_issue_stalled_long_scoreboard.avg"
+            Groups: "sampling_ws2"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Math Pipe Throttle"
+            Name: "pmsampling:smsp__warps_issue_stalled_math_pipe_throttle.avg"
+            Groups: "sampling_ws2"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "MIO Throttle"
+            Name: "pmsampling:smsp__warps_issue_stalled_mio_throttle.avg"
+            Groups: "sampling_ws3"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Misc"
+            Name: "pmsampling:smsp__warps_issue_stalled_misc.avg"
+            Groups: "sampling_ws3"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "No Instruction"
+            Name: "pmsampling:smsp__warps_issue_stalled_no_instruction.avg"
+            Groups: "sampling_ws4"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Short Scoreboard"
+            Name: "pmsampling:smsp__warps_issue_stalled_short_scoreboard.avg"
+            Groups: "sampling_ws3"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Sleeping"
+            Name: "pmsampling:smsp__warps_issue_stalled_sleeping.avg"
+            Groups: "sampling_ws4"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Tex Throttle"
+            Name: "pmsampling:smsp__warps_issue_stalled_tex_throttle.avg"
+            Groups: "sampling_ws4"
+            CtrDomains: "gpu_sm_c"
+          }
+
+          Metrics {
+            Label: "Wait"
+            Name: "pmsampling:smsp__warps_issue_stalled_wait.avg"
+            Groups: "sampling_ws4"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+      }
+
+      MetricGroups {
+        Label: "Group 0"
+        Expanded: true
+
+        MetricRows {
+          Metrics {
+            Label: "Barrier"
+            Name: "pmsampling:smsp__warps_issue_stalled_barrier.avg"
+            Groups: "sampling_ws0"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+        MetricRows {
+          Metrics {
+            Label: "Branch Resolving"
+            Name: "pmsampling:smsp__warps_issue_stalled_branch_resolving.avg"
+            Groups: "sampling_ws0"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+        MetricRows {
+          Metrics {
+            Label: "Dispatch Stall"
+            Name: "pmsampling:smsp__warps_issue_stalled_dispatch_stall.avg"
+            Groups: "sampling_ws0"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+        MetricRows {
+          Metrics {
+            Label: "Drain"
+            Name: "pmsampling:smsp__warps_issue_stalled_drain.avg"
+            Groups: "sampling_ws0"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+      }
+
+      MetricGroups {
+        Label: "Group 1"
+        Expanded: true
+
+        MetricRows {
+          Metrics {
+            Label: "IMC Miss"
+            Name: "pmsampling:smsp__warps_issue_stalled_imc_miss.avg"
+            Groups: "sampling_ws1"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+        MetricRows {
+          Metrics {
+            Label: "LG Throttle"
+            Name: "pmsampling:smsp__warps_issue_stalled_lg_throttle.avg"
+            Groups: "sampling_ws1"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+      }
+
+      MetricGroups {
+        Label: "Group 2"
+        Expanded: true
+
+        MetricRows {
+          Metrics {
+            Label: "Long Scoreboard"
+            Name: "pmsampling:smsp__warps_issue_stalled_long_scoreboard.avg"
+            Groups: "sampling_ws2"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+        MetricRows {
+          Metrics {
+            Label: "Math Pipe Throttle"
+            Name: "pmsampling:smsp__warps_issue_stalled_math_pipe_throttle.avg"
+            Groups: "sampling_ws2"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+      }
+
+      MetricGroups {
+        Label: "Group 3"
+        Expanded: true
+
+        MetricRows {
+          Metrics {
+            Label: "MIO Throttle"
+            Name: "pmsampling:smsp__warps_issue_stalled_mio_throttle.avg"
+            Groups: "sampling_ws3"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+        MetricRows {
+          Metrics {
+            Label: "Misc"
+            Name: "pmsampling:smsp__warps_issue_stalled_misc.avg"
+            Groups: "sampling_ws3"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+
+        MetricRows {
+          Metrics {
+            Label: "Short Scoreboard"
+            Name: "pmsampling:smsp__warps_issue_stalled_short_scoreboard.avg"
+            Groups: "sampling_ws3"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+      }
+
+      MetricGroups {
+        Label: "Group 4"
+        Expanded: true
+
+        MetricRows {
+          Metrics {
+            Label: "No Instruction"
+            Name: "pmsampling:smsp__warps_issue_stalled_no_instruction.avg"
+            Groups: "sampling_ws4"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+
+        MetricRows {
+          Metrics {
+            Label: "Sleeping"
+            Name: "pmsampling:smsp__warps_issue_stalled_sleeping.avg"
+            Groups: "sampling_ws4"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+        MetricRows {
+          Metrics {
+            Label: "Tex Throttle"
+            Name: "pmsampling:smsp__warps_issue_stalled_tex_throttle.avg"
+            Groups: "sampling_ws4"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+        MetricRows {
+          Metrics {
+            Label: "Wait"
+            Name: "pmsampling:smsp__warps_issue_stalled_wait.avg"
+            Groups: "sampling_ws4"
+            CtrDomains: "gpu_sm_c"
+          }
+        }
+      }
+    }
+  }
+}

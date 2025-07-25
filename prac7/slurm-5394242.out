@@ -1,0 +1,137 @@
+rm trid trid_dynamic trid_shuffle
+nvcc trid.cu trid_gold.cpp -o trid \
+-I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+ptxas info    : 47 bytes gmem, 16 bytes cmem[4]
+ptxas info    : Compiling entry function '_Z8GPU_tridiiPf' for 'sm_70'
+ptxas info    : Function properties for _Z8GPU_tridiiPf
+    40 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 40 registers, used 1 barriers, 40 bytes cumulative stack size, 1536 bytes smem, 368 bytes cmem[0]
+nvcc trid_dynamic.cu trid_gold.cpp -o trid_dynamic \
+-I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z8GPU_tridiiPf' for 'sm_70'
+ptxas info    : Function properties for _Z8GPU_tridiiPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 26 registers, used 1 barriers, 368 bytes cmem[0]
+nvcc trid_shuffle.cu trid_gold.cpp -o trid_shuffle \
+-I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+trid_shuffle.cu(68): warning #68-D: integer conversion resulted in a change of sign
+        d_val = __shfl_sync(-1, orig_dd, tid-nt);
+                            ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+trid_shuffle.cu(69): warning #68-D: integer conversion resulted in a change of sign
+        c_val = __shfl_sync(-1, orig_cc, tid-nt);
+                            ^
+
+trid_shuffle.cu(70): warning #68-D: integer conversion resulted in a change of sign
+        a_val = __shfl_sync(-1, orig_aa, tid-nt);
+                            ^
+
+trid_shuffle.cu(77): warning #68-D: integer conversion resulted in a change of sign
+        d_val = __shfl_sync(-1, orig_dd, tid+nt);
+                            ^
+
+trid_shuffle.cu(78): warning #68-D: integer conversion resulted in a change of sign
+        a_val = __shfl_sync(-1, orig_aa, tid+nt);
+                            ^
+
+trid_shuffle.cu(79): warning #68-D: integer conversion resulted in a change of sign
+        c_val = __shfl_sync(-1, orig_cc, tid+nt);
+                            ^
+
+trid_shuffle.cu(68): warning #68-D: integer conversion resulted in a change of sign
+        d_val = __shfl_sync(-1, orig_dd, tid-nt);
+                            ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+trid_shuffle.cu(69): warning #68-D: integer conversion resulted in a change of sign
+        c_val = __shfl_sync(-1, orig_cc, tid-nt);
+                            ^
+
+trid_shuffle.cu(70): warning #68-D: integer conversion resulted in a change of sign
+        a_val = __shfl_sync(-1, orig_aa, tid-nt);
+                            ^
+
+trid_shuffle.cu(77): warning #68-D: integer conversion resulted in a change of sign
+        d_val = __shfl_sync(-1, orig_dd, tid+nt);
+                            ^
+
+trid_shuffle.cu(78): warning #68-D: integer conversion resulted in a change of sign
+        a_val = __shfl_sync(-1, orig_aa, tid+nt);
+                            ^
+
+trid_shuffle.cu(79): warning #68-D: integer conversion resulted in a change of sign
+        c_val = __shfl_sync(-1, orig_cc, tid+nt);
+                            ^
+
+trid_shuffle.cu(54): warning #177-D: variable "b_val" was declared but never referenced
+      float a_val, b_val, c_val, d_val;
+                   ^
+
+trid_shuffle.cu(116): warning #177-D: variable "shmem" was declared but never referenced
+    float *h_u, *h_v, *h_c, *d_u, shmem;
+                                  ^
+
+ptxas info    : 47 bytes gmem, 16 bytes cmem[4]
+ptxas info    : Compiling entry function '_Z8GPU_tridiiPf' for 'sm_70'
+ptxas info    : Function properties for _Z8GPU_tridiiPf
+    40 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 40 registers, used 1 barriers, 40 bytes cumulative stack size, 368 bytes cmem[0]
+GPU Device 0: "Volta" with compute capability 7.0
+
+Iteration 1 - aa: 0.000000, bb: 1.000000, cc: -0.333333, dd: 0.333333
+Iteration 1 - aa: 0.000000, bb: 0.888889, cc: -0.125000, dd: 0.500000
+Iteration 2 - aa: 0.000000, bb: 1.000000, cc: -0.125000, dd: 0.500000
+Iteration 2 - aa: 0.000000, bb: 0.982143, cc: -0.018182, dd: 0.600000
+Iteration 4 - aa: 0.000000, bb: 1.000000, cc: -0.018182, dd: 0.600000
+Iteration 4 - aa: 0.000000, bb: 0.999613, cc: -0.000387, dd: 0.617647
+Iteration 8 - aa: 0.000000, bb: 1.000000, cc: -0.000387, dd: 0.617647
+Iteration 8 - aa: 0.000000, bb: 1.000000, cc: -0.000000, dd: 0.618034
+Iteration 16 - aa: 0.000000, bb: 1.000000, cc: -0.000000, dd: 0.618034
+Iteration 16 - aa: 0.000000, bb: 1.000000, cc: 0.000000, dd: 0.618034
+Iteration 1 - aa: 0.000000, bb: 1.000000, cc: -0.333333, dd: 0.206011
+Iteration 1 - aa: 0.000000, bb: 0.888889, cc: -0.125000, dd: 0.338526
+Iteration 2 - aa: 0.000000, bb: 1.000000, cc: -0.125000, dd: 0.338526
+Iteration 2 - aa: 0.000000, bb: 0.982143, cc: -0.018182, dd: 0.429510
+Iteration 4 - aa: 0.000000, bb: 1.000000, cc: -0.018182, dd: 0.429510
+Iteration 4 - aa: 0.000000, bb: 0.999613, cc: -0.000387, dd: 0.446827
+Iteration 8 - aa: 0.000000, bb: 1.000000, cc: -0.000387, dd: 0.446827
+Iteration 8 - aa: 0.000000, bb: 1.000000, cc: -0.000000, dd: 0.447214
+Iteration 16 - aa: 0.000000, bb: 1.000000, cc: -0.000000, dd: 0.447214
+Iteration 16 - aa: 0.000000, bb: 1.000000, cc: 0.000000, dd: 0.447214
+With starting value index 0
+ 0  0.447214  0.447214  0.000000 
+ 1  0.723607  0.723607  0.000000 
+ 2  0.869505  0.869505  0.000000 
+ 3  0.940636  0.940636  0.000000 
+ 4  0.973689  0.973689  0.000000 
+ 5  0.988561  0.988561  0.000000 
+ 6  0.995100  0.995100  0.000000 
+ 7  0.997926  0.997926  0.000000 
+ 8  0.999130  0.999130  0.000000 
+ 9  0.999638  0.999638  -0.000000 
+ 10  0.999850  0.999851  -0.000000 
+ 11  0.999939  0.999939  -0.000000 
+ 12  0.999975  0.999975  -0.000000 
+ 13  0.999990  0.999990  -0.000000 
+ 14  0.999995  0.999996  -0.000000 
+ 15  0.999998  0.999998  -0.000000 
+ 16  0.999998  0.999998  -0.000000 
+ 17  0.999995  0.999996  -0.000000 
+ 18  0.999990  0.999990  -0.000000 
+ 19  0.999975  0.999975  -0.000000 
+ 20  0.999939  0.999939  -0.000000 
+ 21  0.999850  0.999851  -0.000000 
+ 22  0.999638  0.999638  -0.000000 
+ 23  0.999130  0.999130  -0.000000 
+ 24  0.997926  0.997926  0.000000 
+ 25  0.995100  0.995100  0.000000 
+ 26  0.988561  0.988561  0.000000 
+ 27  0.973689  0.973689  -0.000000 
+ 28  0.940636  0.940636  -0.000000 
+ 29  0.869505  0.869505  0.000000 
+ 30  0.723607  0.723607  0.000000 
+ 31  0.447214  0.447214  0.000000 

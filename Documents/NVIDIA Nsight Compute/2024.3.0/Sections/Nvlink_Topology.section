@@ -1,0 +1,20 @@
+Identifier: "Nvlink_Topology"
+DisplayName: "NVLink Topology"
+Extends: "Nvlink"
+Description: "NVLink Topology diagram shows logical NVLink connections with transmit/receive throughput."
+Order: 61
+Sets {
+  Identifier: "full"
+}
+Sets {
+  Identifier: "nvlink"
+}
+Body {
+  DisplayName: "NVLink Topology"
+  SetDefault: true
+  Items {
+    NvlinkTopology {
+      Label: "NVLink Topology"
+    }
+  }
+}

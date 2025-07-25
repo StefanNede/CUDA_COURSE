@@ -1,0 +1,85 @@
+Identifier: "MemoryWorkloadAnalysis_Chart"
+DisplayName: "Memory Workload Analysis Chart"
+Extends: "MemoryWorkloadAnalysis"
+Description: "Detailed chart of the memory units."
+Order: 31
+Sets {
+  Identifier: "detailed"
+}
+Sets {
+  Identifier: "full"
+}
+Metrics {
+  Metrics {
+    Label: "L2 Cache Sectors"
+    Name: "lts__t_sectors.sum"
+  }
+  Metrics {
+    Label: "L2 Cache Sector Throughput For TEX"
+    Name: "lts__t_sectors_srcunit_tex.avg.pct_of_peak_sustained_elapsed"
+  }
+  Metrics {
+    Label: "Missed L2 Cache Sectors For TEX"
+    Name: "lts__t_sectors_srcunit_tex_lookup_miss.sum"
+  }
+  Metrics {
+    Label: "Missed L2 Cache Sectors For TEX Accessing Peer Memory"
+    Name: "lts__t_sectors_srcunit_tex_aperture_peer_lookup_miss.sum"
+    Filter {
+      Items {
+        MaxArch: CC_70
+      }
+      Items {
+        MinArch: CC_75
+        MaxArch: CC_86
+      }
+      Items {
+        MinArch: CC_89
+      }
+    }
+  }
+  Metrics {
+    Label: "Missed L2 Cache Sectors For TEX Accessing System Memory"
+    Name: "lts__t_sectors_srcunit_tex_aperture_sysmem_lookup_miss.sum"
+    Filter {
+      Items {
+        MaxArch: CC_70
+      }
+      Items {
+        MinArch: CC_75
+        MaxArch: CC_86
+      }
+      Items {
+        MinArch: CC_89
+      }
+    }
+  }
+  Metrics {
+    Label: "L2 Compression Success Rate"
+    Name: "lts__average_gcomp_input_sector_success_rate.pct"
+    Filter {
+      MinArch: CC_80
+    }
+  }
+  Metrics {
+    Label: "DRAM bandwidth"
+    Name: "dram__bytes.sum.per_second"
+  }
+  Metrics {
+	  Label: "PCIe read bandwidth"
+	  Name: "pcie__read_bytes.sum.per_second"
+  }
+	Metrics {
+	  Label: "PCIe write bandwidth"
+	  Name: "pcie__write_bytes.sum.per_second"
+  }
+}
+Body {
+  DisplayName: "Memory Chart"
+  SetDefault: true
+  Items {
+    MemoryChart {
+      Label: "Memory Chart"
+    }
+  }
+}

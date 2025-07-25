@@ -1,0 +1,6 @@
+SourceMetricTable {
+  Label: "L2 Theoretical Sectors Global Excessive"
+  Metrics {
+    Name: "derived__memory_l2_theoretical_sectors_global_excessive"
+  }
+}

@@ -1,0 +1,69 @@
+rm -f reduction reduction_warps
+nvcc reduction.cu -o reduction -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+reduction.cu(93): warning #177-D: variable "milli" was declared but never referenced
+    float milli;
+          ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z9reductionPfS_' for 'sm_70'
+ptxas info    : Function properties for _Z9reductionPfS_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 1 barriers, 368 bytes cmem[0]
+nvcc reduction_warps.cu -o reduction_warps -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+reduction_warps.cu(42): warning #68-D: integer conversion resulted in a change of sign
+        warp_sum += __shfl_xor_sync(-1, warp_sum, d);
+                                    ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+reduction_warps.cu(60): warning #68-D: integer conversion resulted in a change of sign
+        warp_sum += __shfl_xor_sync(-1, warp_sum, d);
+                                    ^
+
+reduction_warps.cu(77): warning #68-D: integer conversion resulted in a change of sign
+        warp_sum += __shfl_xor_sync(-1, warp_sum, d);
+                                    ^
+
+reduction_warps.cu(42): warning #68-D: integer conversion resulted in a change of sign
+        warp_sum += __shfl_xor_sync(-1, warp_sum, d);
+                                    ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+reduction_warps.cu(60): warning #68-D: integer conversion resulted in a change of sign
+        warp_sum += __shfl_xor_sync(-1, warp_sum, d);
+                                    ^
+
+reduction_warps.cu(77): warning #68-D: integer conversion resulted in a change of sign
+        warp_sum += __shfl_xor_sync(-1, warp_sum, d);
+                                    ^
+
+reduction_warps.cu(91): warning #177-D: variable "shared_mem_size" was declared but never referenced
+    int num_blocks, num_threads, num_elements, mem_size, shared_mem_size;
+                                                         ^
+
+reduction_warps.cu(93): warning #177-D: variable "d_odata" was declared but never referenced
+    float *h_data, *d_idata, *d_odata, *d_running_sum, *h_running_sum;
+                              ^
+
+reduction_warps.cu(107): warning #177-D: variable "milli" was declared but never referenced
+    float milli;
+          ^
+
+reduction_warps.cu(52): warning #20044-D: extern declaration of the entity temp is treated as a static definition
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z10reduction2PfS_' for 'sm_70'
+ptxas info    : Function properties for _Z10reduction2PfS_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 1 barriers, 128 bytes smem, 368 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z9reductionPfS_' for 'sm_70'
+ptxas info    : Function properties for _Z9reductionPfS_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 1 barriers, 368 bytes cmem[0]
+GPU Device 0: "Volta" with compute capability 7.0
+
+
+reduction error = 0.000000

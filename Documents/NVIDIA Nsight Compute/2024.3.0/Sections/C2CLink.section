@@ -1,0 +1,37 @@
+Identifier: "C2CLink"
+DisplayName: "C2CLink"
+Description: "High-level summary of C2C link utilization. It shows the total received and transmitted (sent) memory, as well as the overall link peak utilization."
+Order: 60
+
+Filter {
+  Items {
+    MinArch: CC_90
+  }
+}
+
+Header {
+  Metrics {
+    Label: "Received User Bytes"
+    Name: "ctc__rx_bytes_data_user.sum"
+  }
+  Metrics {
+    Label: "Received Peak Utilization"
+    Name: "ctc__rx_bytes_data_user.sum.pct_of_peak_sustained_elapsed"
+  }
+  Metrics {
+    Label: "Received Bandwidth"
+    Name: "ctc__rx_bytes_data_user.sum.per_second"
+  }
+  Metrics {
+    Label: "Transmitted User Bytes"
+    Name: "ctc__tx_bytes_data_user.sum"
+  }
+  Metrics {
+    Label: "Transmitted Peak Utilization"
+    Name: "ctc__tx_bytes_data_user.sum.pct_of_peak_sustained_elapsed"
+  }
+  Metrics {
+    Label: "Transmitted Bandwidth"
+    Name: "ctc__tx_bytes_data_user.sum.per_second"
+  }
+}

@@ -1,0 +1,72 @@
+rm -f prac6 prac6a prac6b prac6c *.o *.a
+g++ -c -fPIC -o main.o main.cpp
+nvcc prac6.cu -c -o prac6.o -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z15my_first_kernelPf' for 'sm_70'
+ptxas info    : Function properties for _Z15my_first_kernelPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 360 bytes cmem[0]
+g++ -fPIC -o prac6 main.o prac6.o -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+nvcc prac6.cu -lib -o prac6.a -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z15my_first_kernelPf' for 'sm_70'
+ptxas info    : Function properties for _Z15my_first_kernelPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 360 bytes cmem[0]
+g++ -fPIC -o prac6a main.o prac6.a -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+nvcc main.cpp prac6b.cu -o prac6b -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z15my_first_kernelIdEvPT_' for 'sm_70'
+ptxas info    : Function properties for _Z15my_first_kernelIdEvPT_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 360 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z15my_first_kernelIiEvPT_' for 'sm_70'
+ptxas info    : Function properties for _Z15my_first_kernelIiEvPT_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 8 registers, used 0 barriers, 360 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z15my_first_kernelIfEvPT_' for 'sm_70'
+ptxas info    : Function properties for _Z15my_first_kernelIfEvPT_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 360 bytes cmem[0]
+nvcc main.cpp prac6c.cu -o prac6c -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z15my_first_kernelILi3EEvPf' for 'sm_70'
+ptxas info    : Function properties for _Z15my_first_kernelILi3EEvPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 360 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z15my_first_kernelILi2EEvPf' for 'sm_70'
+ptxas info    : Function properties for _Z15my_first_kernelILi2EEvPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 360 bytes cmem[0]
+ n,  x  =  0  4 
+ n,  x  =  1  13.8256 
+ n,  x  =  2  70.3763 
+ n,  x  =  3  444.6 
+ n,  x  =  4  3091.15 
+ n,  x  =  5  22324.3 
+ n,  x  =  6  163563 
+ n,  x  =  7  1.2048e+06 
+ n,  x  =  8  8.89207e+06 
+ n,  x  =  9  6.56761e+07 
+ n,  x  =  10  4.85209e+08 
+ n,  x  =  11  3.58503e+09 
+ n,  x  =  12  2.64894e+10 
+ n,  x  =  13  1.9573e+11 
+ n,  x  =  14  1.44626e+12 
+ n,  x  =  15  1.06865e+13 
+ n,  i  =  0  9 
+ n,  i  =  1  123.373 
+ n,  i  =  2  3967.39 
+ n,  i  =  3  180212 
+ n,  i  =  4  9.22067e+06 
+ n,  i  =  5  4.9177e+08 
+ n,  i  =  6  2.66209e+10 
+ n,  i  =  7  1.4489e+12 
+ n,  i  =  8  7.90159e+13 
+ n,  i  =  9  4.31229e+15 
+ n,  i  =  10  2.35407e+17 
+ n,  i  =  11  1.2852e+19 
+ n,  i  =  12  7.01681e+20 
+ n,  i  =  13  3.83102e+22 
+ n,  i  =  14  2.09167e+24 
+ n,  i  =  15  1.14201e+26 

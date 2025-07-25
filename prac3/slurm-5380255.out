@@ -1,0 +1,38 @@
+rm -f laplace3d laplace3d_new
+nvcc laplace3d.cu laplace3d_gold.cpp -o laplace3d \
+	-I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+laplace3d.cu(73): warning #177-D: variable "h_foo" was declared but never referenced
+    float *h_u1, *h_u2, *h_foo, *d_u1, *d_u2, *d_foo;
+                         ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z13GPU_laplace3diiiPKfPf' for 'sm_70'
+ptxas info    : Function properties for _Z13GPU_laplace3diiiPKfPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 56 registers, used 0 barriers, 384 bytes cmem[0]
+nvcc laplace3d_new.cu laplace3d_gold.cpp -o laplace3d_new \
+	-I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart
+laplace3d_new.cu(67): warning #177-D: variable "h_foo" was declared but never referenced
+    float *h_u1, *h_u2, *h_foo, *d_u1, *d_u2, *d_foo;
+                         ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z13GPU_laplace3diiiPKfPf' for 'sm_70'
+ptxas info    : Function properties for _Z13GPU_laplace3diiiPKfPf
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 21 registers, used 0 barriers, 384 bytes cmem[0]
+Grid dimensions: 1024 x 1024 x 1024 
+
+GPU Device 0: "Volta" with compute capability 7.0
+
+Copy u1 to device: 534.3 (ms) 
+
+Block dimensions: 32 x 4
+20x GPU_laplace3d: 598.9 (ms) 
+
+Copy u2 to host: 1472.2 (ms) 
+

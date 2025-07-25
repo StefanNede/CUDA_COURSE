@@ -1,0 +1,23 @@
+rm -f tensorCUBLAS simpleTensorCoreGEMM simpleCUFFT
+nvcc tensorCUBLAS.cu -o tensorCUBLAS -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart -lcublas -lcurand -lcufft
+ptxas info    : 0 bytes gmem
+nvcc simpleTensorCoreGEMM.cu -o simpleTensorCoreGEMM -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart -lcublas -lcurand -lcufft
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z17convertFp32ToFp16P6__halfPfi' for 'sm_70'
+ptxas info    : Function properties for _Z17convertFp32ToFp16P6__halfPfi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 10 registers, used 0 barriers, 372 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z12wmma_exampleP6__halfS0_Pfiiiff' for 'sm_70'
+ptxas info    : Function properties for _Z12wmma_exampleP6__halfS0_Pfiiiff
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 33 registers, used 0 barriers, 396 bytes cmem[0]
+Time for SGEMM without Tensor Cores: 5.676416 ms
+Time for SGEMM without Tensor Cores: 0.333824 ms
+Time for SGEMM without Tensor Cores: 0.328704 ms
+Verification passed!
+
+Time for SGEMM with Tensor Cores and mixed precision (Volta): 38.379681 ms
+Time for SGEMM with Tensor Cores and mixed precision (Volta): 0.084992 ms
+Time for SGEMM with Tensor Cores and mixed precision (Volta): 0.075776 ms
+Verification passed!
+

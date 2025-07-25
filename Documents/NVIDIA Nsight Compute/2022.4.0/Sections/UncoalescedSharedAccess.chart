@@ -1,0 +1,6 @@
+SourceMetricTable {
+  Label: "L1 Wavefronts Shared Excessive"
+  Metrics {
+    Name: "derived__memory_l1_wavefronts_shared_excessive"
+  }
+}

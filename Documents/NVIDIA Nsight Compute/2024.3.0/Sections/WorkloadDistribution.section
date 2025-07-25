@@ -1,0 +1,145 @@
+Identifier: "WorkloadDistribution"
+DisplayName: "GPU and Memory Workload Distribution"
+Description: "Analysis of workload distribution in active cycles of SM, SMP, SMSP, L1 & L2 caches, and DRAM"
+Order: 100
+
+Sets {
+  Identifier: "basic"
+}
+Sets {
+  Identifier: "detailed"
+}
+Sets {
+  Identifier: "full"
+}
+Sets {
+  Identifier: "roofline"
+}
+
+Header {
+    Metrics {
+        Label: "Average SM Active Cycles"
+        Name: "sm__cycles_active.avg"
+    }
+    Metrics {
+        Label: "Average L1 Active Cycles"
+        Name: "l1tex__cycles_active.avg"
+    }
+    Metrics {
+        Label: "Average L2 Active Cycles"
+        Name: "lts__cycles_active.avg"
+    }
+    Metrics {
+        Label: "Average SMSP Active Cycles"
+        Name: "smsp__cycles_active.avg"
+    }
+    Metrics {
+        Label: "Average DRAM Active Cycles"
+        Name: "dram__cycles_active.avg"
+        Filter {
+          Items {
+            MaxArch: CC_70
+          }
+          Items {
+            MinArch: CC_75
+            MaxArch: CC_86
+          }
+          Items {
+            MinArch: CC_89
+          }
+        }
+    }
+    Metrics {
+        Label: "Total SM Elapsed Cycles"
+        Name: "sm__cycles_elapsed.sum"
+    }
+    Metrics {
+        Label: "Total L1 Elapsed Cycles"
+        Name: "l1tex__cycles_elapsed.sum"
+    }
+    Metrics {
+        Label: "Total L2 Elapsed Cycles"
+        Name: "lts__cycles_elapsed.sum"
+    }
+    Metrics {
+        Label: "Total SMSP Elapsed Cycles"
+        Name: "smsp__cycles_elapsed.sum"
+    }
+    Metrics {
+        Label: "Total DRAM Elapsed Cycles"
+        Name: "dram__cycles_elapsed.sum"
+        Filter {
+          Items {
+            MaxArch: CC_70
+          }
+          Items {
+            MinArch: CC_75
+            MaxArch: CC_86
+          }
+          Items {
+            MinArch: CC_89
+          }
+        }
+    }
+}
+
+Body {
+    Items {
+        SuffixTable {
+            Label: "Workload Distribution"
+            Suffixes {
+                Suffix {
+                    Label: "Average"
+                    Name: ".avg"
+                }
+                Suffix {
+                    Label: "Min"
+                    Name: ".min"
+                }
+                Suffix {
+                    Label: "Max"
+                    Name: ".max"
+                }
+                Suffix {
+                    Label: "Sum"
+                    Name: ".sum"
+                }
+            }
+            BaseNames {
+                BaseName {
+                    Label: "SM Active Cycles"
+                    Name: "sm__cycles_active"
+                }
+                BaseName {
+                    Label: "SMSP Active Cycles"
+                    Name: "smsp__cycles_active"
+                }
+                BaseName {
+                    Label: "L1 Active Cycles"
+                    Name: "l1tex__cycles_active"
+                }
+                BaseName {
+                    Label: "L2 Active Cycles"
+                    Name: "lts__cycles_active"
+                }
+                BaseName {
+                    Label: "DRAM Active Cycles"
+                    Name: "dram__cycles_active"
+                    Filter {
+                      Items {
+                          MaxArch: CC_70
+                      }
+                      Items {
+                          MinArch: CC_75
+                          MaxArch: CC_86
+                      }
+                      Items {
+                          MinArch: CC_89
+                      }
+                      }
+                }
+
+            }
+        }
+    }
+}

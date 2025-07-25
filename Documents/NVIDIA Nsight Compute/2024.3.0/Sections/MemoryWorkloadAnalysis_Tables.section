@@ -1,0 +1,155 @@
+Identifier: "MemoryWorkloadAnalysis_Tables"
+DisplayName: "Memory Workload Analysis Tables"
+Extends: "MemoryWorkloadAnalysis"
+Description: "Detailed tables with data for each memory unit."
+Order: 32
+Sets {
+  Identifier: "full"
+}
+Metrics {
+  Metrics {
+    Label: "Average Bytes Per Sector For Global Loads"
+    Name: "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.ratio"
+    Filter {
+      CollectionFilter {
+        CollectionScopes: CollectionScope_Launch
+      }
+    }
+  }
+  Metrics {
+    Label: "Average Bytes Per Sector For Global Stores"
+    Name: "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.ratio"
+    Filter {
+      CollectionFilter {
+        CollectionScopes: CollectionScope_Launch
+      }
+    }
+  }
+  Metrics {
+    Label: "Average Bytes Per Sector For Local Loads"
+    Name: "smsp__sass_average_data_bytes_per_sector_mem_local_op_ld.ratio"
+    Filter {
+      CollectionFilter {
+        CollectionScopes: CollectionScope_Launch
+      }
+    }
+  }
+  Metrics {
+    Label: "Average Bytes Per Sector For Local Stores"
+    Name: "smsp__sass_average_data_bytes_per_sector_mem_local_op_st.ratio"
+    Filter {
+      CollectionFilter {
+        CollectionScopes: CollectionScope_Launch
+      }
+    }
+  }
+  Metrics {
+    Label: "Maximum Bytes Per Sector For Global Loads"
+    Name: "smsp__sass_average_data_bytes_per_sector_mem_global_op_ld.max_rate"
+    Filter {
+      CollectionFilter {
+        CollectionScopes: CollectionScope_Launch
+      }
+    }
+  }
+  Metrics {
+    Label: "Maximum Bytes Per Sector For Global Stores"
+    Name: "smsp__sass_average_data_bytes_per_sector_mem_global_op_st.max_rate"
+    Filter {
+      CollectionFilter {
+        CollectionScopes: CollectionScope_Launch
+      }
+    }
+  }
+  Metrics {
+    Label: "Maximum Bytes Per Sector For Local Loads"
+    Name: "smsp__sass_average_data_bytes_per_sector_mem_local_op_ld.max_rate"
+    Filter {
+      CollectionFilter {
+        CollectionScopes: CollectionScope_Launch
+      }
+    }
+  }
+  Metrics {
+    Label: "Maximum Bytes Per Sector For Local Stores"
+    Name: "smsp__sass_average_data_bytes_per_sector_mem_local_op_st.max_rate"
+    Filter {
+      CollectionFilter {
+        CollectionScopes: CollectionScope_Launch
+      }
+    }
+  }
+  Metrics {
+    Label: "L1TEX Hit Rate For Global Loads"
+    Name: "l1tex__t_sector_pipe_lsu_mem_global_op_ld_hit_rate.pct"
+  }
+  Metrics {
+    Label: "L1TEX Hit Rate For Global Stores"
+    Name: "l1tex__t_sector_pipe_lsu_mem_global_op_st_hit_rate.pct"
+  }
+  Metrics {
+    Label: "L1TEX Hit Rate For Local Loads"
+    Name: "l1tex__t_sector_pipe_lsu_mem_local_op_ld_hit_rate.pct"
+  }
+  Metrics {
+    Label: "L1TEX Hit Rate For Local Stores"
+    Name: "l1tex__t_sector_pipe_lsu_mem_local_op_st_hit_rate.pct"
+  }
+  Metrics {
+    Label: "L2 Hit Rate For Loads"
+    Name: "lts__t_sector_op_read_hit_rate.pct"
+  }
+  Metrics {
+    Label: "L2 Hit Rate For Stores"
+    Name: "lts__t_sector_op_write_hit_rate.pct"
+  }
+  Metrics {
+    Label: "L1TEX Throughput"
+    Name: "l1tex__throughput.avg.pct_of_peak_sustained_elapsed"
+  }
+  Metrics {
+    Label: "L2 Throughput"
+    Name: "lts__throughput.avg.pct_of_peak_sustained_elapsed"
+  }
+  Metrics {
+    Label: "DRAM Throughput"
+    Name: "gpu__dram_throughput.avg.pct_of_peak_sustained_elapsed"
+  }
+}
+Body {
+  DisplayName: "Memory Tables"
+  Items {
+    MemorySharedTable {
+      Label: "Shared Memory"
+    }
+  }
+  Items {
+    MemoryL1TEXCacheTable {
+      Label: "L1/TEX Cache"
+    }
+  }
+  Items {
+    MemoryL2CacheTable {
+      Label: "L2 Cache"
+    }
+  }
+  Items {
+    MemoryL2CacheEvictPolicyTable {
+      Label: "L2 Cache Eviction Policies"
+    }
+    Filter {
+      Items {
+        MinArch: 80
+        MaxArch: 86
+      }
+      Items {
+        MinArch: 89
+      }
+    }
+  }
+  Items {
+    MemoryDeviceMemoryTable {
+      Label: "Device Memory"
+    }
+  }
+}

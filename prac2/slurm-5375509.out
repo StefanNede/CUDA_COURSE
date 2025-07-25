@@ -1,0 +1,28 @@
+rm -f prac2 prac2_device
+nvcc prac2.cu -o prac2 -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart -lcurand
+ptxas info    : 0 bytes gmem, 48 bytes cmem[3]
+ptxas info    : Compiling entry function '_Z8pathcalcPfS_' for 'sm_70'
+ptxas info    : Function properties for _Z8pathcalcPfS_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 30 registers, used 0 barriers, 368 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z12find_averagePfS_' for 'sm_70'
+ptxas info    : Function properties for _Z12find_averagePfS_
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, used 0 barriers, 368 bytes cmem[0]
+nvcc prac2_device.cu -o prac2_device -I/apps/system/easybuild/software/CUDA/12.6.0/include -I. -I../headers -lineinfo -arch=sm_70 --ptxas-options=-v --use_fast_math -L/apps/system/easybuild/software/CUDA/12.6.0/lib64 -lcudart -lcurand
+ptxas info    : 218048 bytes gmem, 108 bytes cmem[3], 64 bytes cmem[4]
+ptxas info    : Compiling entry function '_Z8pathcalcP17curandStateXORWOWPfii' for 'sm_70'
+ptxas info    : Function properties for _Z8pathcalcP17curandStateXORWOWPfii
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 29 registers, used 0 barriers, 376 bytes cmem[0]
+ptxas info    : Compiling entry function '_Z8RNG_initP17curandStateXORWOW' for 'sm_70'
+ptxas info    : Function properties for _Z8RNG_initP17curandStateXORWOW
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 32 registers, used 0 barriers, 360 bytes cmem[0]
+GPU Device 0: "Volta" with compute capability 7.0
+
+CURAND normal RNG  execution time (ms): 65.191933,  samples/sec: 2.945150e+10 
+Monte Carlo kernel execution time (ms): 10.342400 
+
+Average value and standard deviation of error  =    4.00000990    0.00005589
+
